@@ -52,15 +52,8 @@ const counter = {
   }
 }
 
-const weather = {
-  state: {
-    temp: 23
-  }
-}
-
 export default new Vuex.Store({
   modules: {
-    counter: counter,
-    weather: Weather
+    counter: counter
   }
 })

@@ -1,8 +1,9 @@
 <template>
   <div class = "counter container">
     <div class = "row text-center">
-      <h1>{{$store.state.counter.count}}</h1>, Counter is {{ IsEvenOrOdd }}</h3>
-      <h5>Total Clicks: {{$store.state.counter.click}}</h5>
+      <h1>{{$store.state.counter.count}}</h1>
+      <h3>Counter is <span>{{ IsEvenOrOdd }}</span> <span v-show="IsPrimeCounter"> &amp; prime number</span></h3>
+      <h5>Total Clicks: {{$store.state.counter.click}} out of {{ $store.state.counter.maxClick }}</h5>
 
       <button class = "btn btn-success" @click = "increment" :disabled = IsClickLimitDone>+</button>
       <button class = "btn btn-danger" @click = "decrement" :disabled = IsClickLimitDone>-</button>
@@ -20,17 +21,25 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Counter',
-  computed: mapGetters([
-    'IsEvenOrOdd',
-    'IsClickLimitDone'
-  ]),
-  methods: mapActions([
-    'increment',
-    'decrement',
-    'incrementIfOdd',
-    'incrementAsync',
-    'enableButtons'
-  ])
+  computed: {
+    ...mapGetters([
+      'IsEvenOrOdd',
+      'IsClickLimitDone',
+      'IsPrimeCounter'
+    ]),
+    test() {
+      return 'This is test data from computed method'
+    }
+  },
+  methods: {
+    ...mapActions([
+      'increment',
+      'decrement',
+      'incrementIfOdd',
+      'incrementAsync',
+      'enableButtons'
+    ])
+  }
 }
 </script>
 

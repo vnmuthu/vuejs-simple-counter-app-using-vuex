@@ -7,12 +7,20 @@ const counter = {
   state : {
     count: 0,
     click: 0,
-    maxClick: 10
+    maxClick: 25
   },
 
   getters : {
     IsEvenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd',
-    IsClickLimitDone: state => state.click >= state.maxClick ? true : false
+    IsClickLimitDone: state => state.click >= state.maxClick ? true : false,
+    IsPrimeCounter: state => {
+      let primeFlag = true;
+      for (let i = 2; i <= Math.sqrt(state.count); i++) {
+        if(state.count % i == 0) primeFlag = false;
+      }
+
+      return primeFlag && (state.count > 1);
+    }
   },
 
   mutations : {
